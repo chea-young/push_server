@@ -19,3 +19,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+def push_alarm(request):
+    context = {'text' : 'Check!!'}
+    return render(request, 'quickstart/push_alarm.html',context)
