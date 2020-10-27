@@ -31,3 +31,16 @@ python yolo_video.py --image : 사진 입력을 받음 -> BMP으로 결과 나�
 #yolo 서버의 restframework 
 https://medium.com/@chamakhabdallah8/how-to-deploy-a-keras-model-to-production-with-django-drf-celery-and-redis-df4901014355 
 
+# git branch
+ - 생성 : git checkout -b <branch이름>
+ - 푸시 : git push origin <branch이름>
+ - 연동 : git branch --set-upstream-to origin/<branch 이름>
+ - main으로 이동후 삭제 : git checkout main
+        git branch --delete <branch 이름>
+- 합치기(main으로 이동한 후) : git merge <bracnh 이름>
+
+#푸시
+npm install -g firebase-tools
+
+https://github.com/firebase/quickstart-js/blob/master/messaging/README.md
+https://djangoworld.tistory.com/7
