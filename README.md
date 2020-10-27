@@ -20,3 +20,10 @@ python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5
 python yolo_video.py [OPTIONS...] --image, for image detection mode, OR
 python yolo_video.py [video_path] [output_path (optional)]
 
+
+# git branch
+ 생성 : git checkout -b <branch이름>
+ 푸시 : git push origin <branch이름>
+ 연동 : git branch --set-upstream-to origin/<branch 이름>
+ main으로 이동후 삭제 : git checkout main
+        git branch --delete <branch 이름>
