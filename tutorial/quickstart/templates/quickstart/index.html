@@ -31,7 +31,7 @@
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <!-- div to display the generated registration token -->
-          <div id="token_div" >
+           <div id="token_div" style="display: none;">
             <h4>Registration Token</h4>
             <p id="token" style="word-break: break-all;"></p>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
@@ -40,14 +40,14 @@
           <!-- div to display the UI to allow the request for permission to
                notify the user. This is shown if the app has not yet been
                granted permission to notify. -->
-          <div id="permission_div" >
+           <div id="permission_div" style="display: none;">
             <h4>Needs Permission</h4>
             <p id="token"></p>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                     onclick="requestPermission()">Request Permission</button>
           </div>
           <!-- div to display messages received by this app. -->
-          <div id="messages"></div>
+          <div id="messages">Off</div>
         </div>
       </div>
 
@@ -77,43 +77,25 @@
 </script>
 
 <script>
-  // [START get_messaging_object]
-  // Retrieve Firebase Messaging object.
   const messaging = firebase.messaging();
-  // [END get_messaging_object]
-
-  // IDs of divs that display registration token UI or request permission UI.
   const tokenDivId = 'token_div';
   const permissionDivId = 'permission_div';
-
-  // [START receive_message]
-  // Handle incoming messages. Called when:
-  // - a message is received while the app has focus
-  // - the user clicks on an app notification created by a service worker
-  //   `messaging.setBackgroundMessageHandler` handler.
   messaging.onMessage((payload) => {
     console.log('Message received. ', payload);
-    // [START_EXCLUDE]
-    // Update the UI to include the received message.
     appendMessage(payload);
     // [END_EXCLUDE]
   });
-  // [END receive_message]
-
   function resetUI() {
     clearMessages();
     showToken('loading...');
-    // [START get_token]
-    // Get registration token. Initially this makes a network call, once retrieved
-    // subsequent calls to getToken will return from cache.
-    messaging.getToken({vapidKey: 'TYLwx_Bdk46BF3NJneP247je3MhdWdMhQ6K3WDmqX8A'}).then((currentToken) => {
+    document.getElementById("messages").innerHTML="ON";
+    messaging.getToken({vapidKey: 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'}).then((currentToken) => {
       if (currentToken) {
         showToken('now...');
         sendTokenToServer(currentToken);
         updateUIForPushEnabled(currentToken);
       } else {
         showToken('past...');
-        // Show permission request.
         console.log('No registration token available. Request permission to generate one.');
         // Show permission UI.
         updateUIForPushPermissionRequired();
@@ -133,10 +115,6 @@
     const tokenElement = document.querySelector('#token');
     tokenElement.textContent = currentToken;
   }
-
-  // Send the registration token your application server, so that it can:
-  // - send messages back to this app
-  // - subscribe/unsubscribe the token from topics
   function sendTokenToServer(currentToken) {
     if (!isTokenSentToServer()) {
       console.log('Sending token to server...');
@@ -238,6 +216,7 @@
     showHideDiv(tokenDivId, false);
     showHideDiv(permissionDivId, true);
   }
+
   resetUI();
 </script>
 </body>
