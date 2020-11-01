@@ -5,6 +5,6 @@ app_name = 'quickstart'
 
 urlpatterns = [
     path('alarm/', views.push_alarm),
-    path('push/', views.send_to_fcm),
+    path('send/', views.send),
 
 ]

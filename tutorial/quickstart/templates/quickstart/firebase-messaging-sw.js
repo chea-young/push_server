@@ -7,7 +7,7 @@ importScripts('/__/firebase/init.js');
 
 const messaging = firebase.messaging();
 
-/**
+
  * Here is is the code snippet to initialize Firebase Messaging in the Service
  * Worker when your app is not hosted on Firebase Hosting.
 
@@ -22,21 +22,14 @@ const messaging = firebase.messaging();
  // your app's Firebase config object.
  // https://firebase.google.com/docs/web/setup#config-object
  firebase.initializeApp({
-   apiKey: 'api-key',
-   authDomain: 'project-id.firebaseapp.com',
-   databaseURL: 'https://project-id.firebaseio.com',
-   projectId: 'project-id',
-   storageBucket: 'project-id.appspot.com',
-   messagingSenderId: 'sender-id',
-   appId: 'app-id',
-   measurementId: 'G-measurement-id',
+  measurementId: "G-84NKD6F5XM",
  });
 
  // Retrieve an instance of Firebase Messaging so that it can handle background
  // messages.
  const messaging = firebase.messaging();
  // [END initialize_firebase_in_sw]
- **/
+ 
 
 
 // If you would like to customize notifications that are received in the

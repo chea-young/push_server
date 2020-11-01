@@ -1,0 +1,71 @@
+  
+<html>
+<head>
+<!-- favicon.ico 404 (Not Found) -->
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<p id="Check">OFF</p> 
+  <main class="mdl-layout__content mdl-color--grey-200">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+      <!-- Container for the Table of content -->
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+          <div >
+            <h4>Check</h4>
+            <p id="token"></p>
+            <button id="LED_OFF2" onclick="LEDOFF();"> Off </button>
+          </div>
+          <div id="messages"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAppFrkuPMimjsKVLmIWN4RtTPsQkwlX94",
+    authDomain: "iceboat-24e4f.firebaseapp.com",
+    databaseURL: "https://iceboat-24e4f.firebaseio.com",
+    projectId: "iceboat-24e4f",
+    storageBucket: "iceboat-24e4f.appspot.com",
+    messagingSenderId: "437163410876",
+    appId: "1:437163410876:web:43f3063e1c55bd936057b9",
+    measurementId: "G-84NKD6F5XM"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+<script>
+
+function LEDOFF(){
+    document.getElementById("LED_OFF2").innerHTML="ON";
+}
+const messaging = firebase.messaging();
+
+messaging.usePublicVapidKey("BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k");
+
+messaging.onMessage((payload) => {
+    document.getElementById("Check").innerHTML="ON";
+
+    const tokenElement = document.querySelector('#token');
+    tokenElement.textContent = currentToken;
+
+    const messagesElement = document.querySelector('#messages');
+    const dataHeaderElement = document.createElement('h5');
+    const dataElement = document.createElement('pre');
+    dataElement.style = 'overflow-x:hidden;';
+    dataHeaderElement.textContent = 'Received message:';
+    dataElement.textContent = JSON.stringify(payload, null, 2);
+    messagesElement.appendChild(dataHeaderElement);
+    messagesElement.appendChild(dataElement);
+  });
+
+
+
+</script>
+</html>

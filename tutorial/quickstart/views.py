@@ -33,8 +33,6 @@ def send_to():
 def push_alarm(request):
     context = {'text' : 'Check!!'}
     #send_to()
-    key = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'
-    send_to_fcm(key, 'Hi', 'By')
     return render(request, 'quickstart/index.html',context)
 
 def send_fcm_notification(ids, title, body):
@@ -71,7 +69,11 @@ def send_to_fcm(ids, title, body):
         }
     }
     requests.post(url, data=json.dumps(content), headers=headers)
-    #return render(request, 'quickstart/send.html',context)
+    
+def send(request):
+    key = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'
+    send_to_fcm(key, 'Hi', 'By')
+    return render(request, 'quickstart/send.html')
 
 
 
