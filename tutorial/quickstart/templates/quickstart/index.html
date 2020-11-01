@@ -47,7 +47,13 @@
                     onclick="requestPermission()">Request Permission</button>
           </div>
           <!-- div to display messages received by this app. -->
-          <div id="messages">Off</div>
+          <div id="messages">
+          <button id="Check" onclick="resetUI();"> Off </button> 
+          </div>
+          <div>
+          <button id="send" onclick="send();"> Send</button> 
+          </div>
+
         </div>
       </div>
 
@@ -61,6 +67,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 <script>
+
   var firebaseConfig = {
     apiKey: "AIzaSyAppFrkuPMimjsKVLmIWN4RtTPsQkwlX94",
     authDomain: "iceboat-24e4f.firebaseapp.com",
@@ -74,9 +81,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-</script>
 
-<script>
   const messaging = firebase.messaging();
   const tokenDivId = 'token_div';
   const permissionDivId = 'permission_div';
@@ -85,10 +90,37 @@
     appendMessage(payload);
     // [END_EXCLUDE]
   });
+
+  function send(){
+    var key = 'AAAAZcj4Rbw:APA91bFK6p_oAAVMFlEUo3hfvdYY3pQS-8gTc3C8nkDl7OHRgsxMp3PDnkH7tY__tU1tKNXu-etFUGn9n_cOu5ElsSpw8x-Iy1j7Jxr9kgZgdZjRCXwB6bVXlyVkhqPAeNMyzPBEUDZF';
+    var to = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k';
+    var notification = {
+      'title': 'Portugal vs. Denmark',
+      'body': '5 to 1',
+    };
+
+    fetch('https://fcm.googleapis.com/fcm/send', {
+      'method': 'POST',
+      'headers': {
+        'Authorization': 'key=' + key,
+        'Content-Type': 'application/json'
+      },
+      'body': JSON.stringify({
+        'notification': notification,
+        'to': to
+      })
+    }).then(function(response) {
+      console.log(response);
+    }).catch(function(error) {
+      console.error(error);
+    })
+  }
+
   function resetUI() {
     clearMessages();
     showToken('loading...');
-    document.getElementById("messages").innerHTML="ON";
+    document.getElementById("Check").innerHTML="ON";
+    
     messaging.getToken({vapidKey: 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'}).then((currentToken) => {
       if (currentToken) {
         showToken('now...');
@@ -218,6 +250,7 @@
   }
 
   resetUI();
+
 </script>
 </body>
 </html>
