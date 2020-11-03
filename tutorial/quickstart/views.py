@@ -20,10 +20,11 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 def push_alarm(request):
     context = {'text' : 'Check!!'}
-    #send_to()
+    #send_pushserver()
+    send_to_token()
     return render(request, 'quickstart/push_alarm.html',context)
 
-def send_to_fcm(ids, title, body):
+def send_to(ids, title, body):
     url = 'https://fcm.googleapis.com/fcm/send'
     headers = {
         'Authorization': 'key=AAAAZcj4Rbw:APA91bFK6p_oAAVMFlEUo3hfvdYY3pQS-8gTc3C8nkDl7OHRgsxMp3PDnkH7tY__tU1tKNXu-etFUGn9n_cOu5ElsSpw8x-Iy1j7Jxr9kgZgdZjRCXwB6bVXlyVkhqPAeNMyzPBEUDZF',
@@ -39,30 +40,36 @@ def send_to_fcm(ids, title, body):
     requests.post(url, data=json.dumps(content), headers=headers)
     
 def send(request):
-    send_to_token()
     key = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'
     send_to_fcm(key, 'Hi', 'By')
     return render(request, 'quickstart/send.html')
 
 def send_to_token():
-    default_app = firebase_admin.initialize_app()
-    registration_tokens = [
-        'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k',
-    ]
-
-    message = messaging.MulticastMessage(
-        data={'score': '850', 'time': '2:45'},
-        tokens=registration_tokens,
+    #default_app = firebase_admin.initialize_app()
+    registration_tokens ='BNe0FkSflOmQ7Fbqy9tymAl0-7W8GpJXdiQ9wal0BUPrMDMP--DVNWkhF8Bhy6CXlPsSNkY1zoNOXsnTacPzF-8'
+    message = messaging.Message(
+        data={
+            'score': '850',
+            'time': '2:45',
+        },
+        token=registration_tokens,
     )
-    response = messaging.send_multicast(message)
-    if response.failure_count > 0:
-        responses = response.responses
-        failed_tokens = []
-        for idx, resp in enumerate(responses):
-            if not resp.success:
-                # The order of responses corresponds to the order of the registration tokens.
-                failed_tokens.append(registration_tokens[idx])
-        print('List of tokens that caused failures: {0}'.format(failed_tokens))
+    response = messaging.send(message)
+    # Response is a message ID string.
+    print('Successfully sent message:', response)
 
-
+def send_pushserver():
+    # This registration token comes from the client FCM SDKs.
+    registration_token = 'BNe0FkSflOmQ7Fbqy9tymAl0-7W8GpJXdiQ9wal0BUPrMDMP--DVNWkhF8Bhy6CXlPsSNkY1zoNOXsnTacPzF-8'
+    # See documentation on defining a message payload.
+    message = messaging.Message(
+    notification=messaging.Notification(
+        title='안녕하세요 타이틀 입니다',
+        body='안녕하세요 메세지 입니다',
+    ),
+    token='BNe0FkSflOmQ7Fbqy9tymAl0-7W8GpJXdiQ9wal0BUPrMDMP--DVNWkhF8Bhy6CXlPsSNkY1zoNOXsnTacPzF-8',
+    )
+    response = messaging.send(message)
+    # Response is a message ID string.
+    print('Successfully sent message:', response)
 

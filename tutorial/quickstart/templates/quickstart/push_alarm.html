@@ -58,19 +58,25 @@
   </main>
 </div>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-<script>
 
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
-    apiKey: "AIzaSyAppFrkuPMimjsKVLmIWN4RtTPsQkwlX94",
-    authDomain: "iceboat-24e4f.firebaseapp.com",
-    databaseURL: "https://iceboat-24e4f.firebaseio.com",
-    projectId: "iceboat-24e4f",
-    storageBucket: "iceboat-24e4f.appspot.com",
-    messagingSenderId: "437163410876",
-    appId: "1:437163410876:web:43f3063e1c55bd936057b9",
-    measurementId: "G-84NKD6F5XM"
+    apiKey: "AIzaSyBfLYQieTSNFJVghLmwPidH9eMLJ8sgafA",
+    authDomain: "push-server-56a52.firebaseapp.com",
+    databaseURL: "https://push-server-56a52.firebaseio.com",
+    projectId: "push-server-56a52",
+    storageBucket: "push-server-56a52.appspot.com",
+    messagingSenderId: "967213415011",
+    appId: "1:967213415011:web:ad877f78d7eff7212dd656",
+    measurementId: "G-MDVS63TX7X"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -86,8 +92,8 @@
   });
 
   function send(){
-    var key = 'AAAAZcj4Rbw:APA91bFK6p_oAAVMFlEUo3hfvdYY3pQS-8gTc3C8nkDl7OHRgsxMp3PDnkH7tY__tU1tKNXu-etFUGn9n_cOu5ElsSpw8x-Iy1j7Jxr9kgZgdZjRCXwB6bVXlyVkhqPAeNMyzPBEUDZF';
-    var to = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k';
+    var key = 'AAAA4TJpemM:APA91bEiBA1-WIo92NZ-k0sbWZAvz0Z3Rwb_fGCu-gNnSz9SVRYdU7aJQZfVdrBku1eFiW4-PuRvIyf_ubGjOzDZ8dVQeGD-inU24KhaDj-qHHgSwRZUUjkJeVPS7V0amo7EARFB_m07';
+    var to = 'BNe0FkSflOmQ7Fbqy9tymAl0-7W8GpJXdiQ9wal0BUPrMDMP--DVNWkhF8Bhy6CXlPsSNkY1zoNOXsnTacPzF-8';
     var notification = {
       'title': 'Portugal vs. Denmark',
       'body': '5 to 1',
@@ -112,7 +118,7 @@
 
   function send2(){
     // This registration token comes from the client FCM SDKs.
-    var registrationToken = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k';
+    var registrationToken = 'BNe0FkSflOmQ7Fbqy9tymAl0-7W8GpJXdiQ9wal0BUPrMDMP--DVNWkhF8Bhy6CXlPsSNkY1zoNOXsnTacPzF-8';
 
     var message = {
       data: {
@@ -139,7 +145,7 @@
     showToken('loading...');
     document.getElementById("Check").innerHTML="ON";
     
-    messaging.getToken({vapidKey: 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'}).then((currentToken) => {
+    messaging.getToken({vapidKey: 'BNe0FkSflOmQ7Fbqy9tymAl0-7W8GpJXdiQ9wal0BUPrMDMP--DVNWkhF8Bhy6CXlPsSNkY1zoNOXsnTacPzF-8'}).then((currentToken) => {
       appendMessage(currentToken);
       if (currentToken) {
         showToken('now...');

@@ -1,8 +1,51 @@
-<!DOCTYPE html>
 <html>
-<head>
-<title> <h1>Send</h1> </title>
-</head>
-<body>
-</body>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <main class="mdl-layout__content mdl-color--grey-200">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                <div id="messages">
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    importScripts('https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js')
+    importScripts('https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js')
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBfLYQieTSNFJVghLmwPidH9eMLJ8sgafA",
+    authDomain: "push-server-56a52.firebaseapp.com",
+    databaseURL: "https://push-server-56a52.firebaseio.com",
+    projectId: "push-server-56a52",
+    storageBucket: "push-server-56a52.appspot.com",
+    messagingSenderId: "967213415011",
+    appId: "1:967213415011:web:ad877f78d7eff7212dd656",
+    measurementId: "G-MDVS63TX7X"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  //firebase.analytics();
+  const messaging = firebase.messaging();
+  messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);
+  appendMessage(payload);
+  });
+
+  function appendMessage(payload) {
+    showToken(payload);
+    const messagesElement = document.querySelector('#messages');
+    const dataHeaderElement = document.createElement('h5');
+    const dataElement = document.createElement('pre');
+    dataElement.style = 'overflow-x:hidden;';
+    dataHeaderElement.textContent = 'Received message:';
+    dataElement.textContent = JSON.stringify(payload, null, 2);
+    messagesElement.appendChild(dataHeaderElement);
+    messagesElement.appendChild(dataElement);
+  }
+  
+  </script>
+
 </html>
