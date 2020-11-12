@@ -38,7 +38,9 @@ def send_to(ids, title, body):
         }
     }
     requests.post(url, data=json.dumps(content), headers=headers)
-    
+
+def azure(request):
+    return render(request, 'quickstart/azure_demo.html')
 def send(request):
     key = 'BKCS4dNROfKjEcGimv6mI10sR_vmOvbRwmgWmVd249-i4ohjxuM6OrXCuLebnJmYL_8FaMVQyM3cdddXhwFuL9k'
     send_to_fcm(key, 'Hi', 'By')

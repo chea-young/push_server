@@ -6,5 +6,6 @@ app_name = 'quickstart'
 urlpatterns = [
     path('alarm/', views.push_alarm),
     path('send/', views.send),
+    path('azure', views.azure)
 
 ]
