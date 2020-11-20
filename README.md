@@ -6,7 +6,7 @@ password : 1234
 
 ### 가상 환경 켜기
 python3 -m venv env
-source env/Scripts/activate  # On Windows use 
+source push_venv/Scripts/activate  # On Windows use 
 
 ```
 env\Scripts\activate
