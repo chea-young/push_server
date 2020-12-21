@@ -38,8 +38,6 @@ https://medium.com/@chamakhabdallah8/how-to-deploy-a-keras-model-to-production-w
         git branch --delete <branch 이름>
 - 합치기(main으로 이동한 후) : git merge <bracnh 이름>
 
-### 푸시
-npm install -g firebase-tools
 
 ### push alarm 참고 링크
 - https://github.com/firebase/quickstart-js/blob/master/messaging/README.md
