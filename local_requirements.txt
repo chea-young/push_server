@@ -68,7 +68,7 @@ firebase-admin==4.4.0
 fixtures==3.0.0
 flake8==3.5.0
 Flask==1.0.2
-Flask-Cors==3.0.3
+Flask-Cors==3.0.9
 Flask-Login==0.4.1
 future==0.16.0
 gevent==1.4.0
