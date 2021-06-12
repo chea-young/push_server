@@ -59,7 +59,7 @@ docutils==0.14
 ecdsa==0.13
 elasticsearch==6.1.1
 entrypoints==0.2.3
-eventlet==0.22.1
+eventlet==0.31.0
 execnet==1.5.0
 extras==1.0.0
 feedparser==5.2.1
