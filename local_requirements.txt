@@ -311,7 +311,7 @@ Twisted==17.9.0
 typed-ast==1.1.0
 typing==3.6.4
 tzlocal==2.1
-ujson==1.35
+ujson==5.4.0
 uritemplate==3.0.0
 urllib3==1.22
 vcversioner==2.16.0.0
