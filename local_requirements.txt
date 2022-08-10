@@ -166,7 +166,7 @@ mpyg321==0.0.2
 msgpack==0.5.6
 multipledispatch==0.5.0
 mypy==0.570
-nbconvert==5.3.1
+nbconvert==6.3.0
 nbformat==4.4.0
 netaddr==0.7.19
 netifaces==0.10.6
