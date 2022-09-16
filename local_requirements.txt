@@ -151,7 +151,7 @@ locket==0.2.0
 lockfile==0.12.2
 logilab-common==1.4.1
 m2r==0.2.1
-Mako==1.0.7
+Mako==1.2.2
 Markdown==2.6.11
 MarkupSafe==1.1.0
 matplotlib==3.0.2
