@@ -207,7 +207,7 @@ pocketsphinx==0.1.15
 prettytable==0.7.2
 prometheus-client==0.7.1
 prompt-toolkit==1.0.15
-protobuf==3.15.0
+protobuf==3.18.3
 psutil==5.4.3
 py==1.5.2
 pyasn1==0.4.3
