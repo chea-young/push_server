@@ -249,7 +249,7 @@ python-swiftclient==3.5.0
 pyttsx3==2.88
 pytz==2018.9
 PyWavelets==0.5.2
-pywin32==224
+pywin32==301
 pywin32-ctypes==0.2.0
 pywinpty==0.5.5
 PyYAML==3.12
