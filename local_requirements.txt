@@ -325,7 +325,7 @@ webencodings==0.5.1
 WebOb==1.7.4
 websocket-client==0.47.0
 WebTest==2.0.29
-Werkzeug==0.14.1
+Werkzeug==0.15.5
 widgetsnbextension==3.5.1
 win-unicode-console==0.5
 wincertstore==0.2
