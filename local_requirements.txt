@@ -227,7 +227,7 @@ PyMySQL==0.8.0
 pyodbc==4.0.22
 pyOpenSSL==18.0.0
 pyparsing==2.2.0
-PyPDF2==1.26.0
+PyPDF2==1.27.9
 pypiwin32==220
 pyrsistent==0.14.2
 pystache==0.5.4
